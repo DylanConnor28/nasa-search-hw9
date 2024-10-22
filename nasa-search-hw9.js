@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import "./nasa-image.js";
+import "./nasa-image-hw9.js";
 export class NasaSearch extends LitElement {
   static get properties() {
     return {
