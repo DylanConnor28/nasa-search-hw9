@@ -57,23 +57,26 @@ export class NasaSearch extends LitElement {
 
   render() {
     return html`
-    <h2>${this.title}</h2>
-    <details open>
-      <summary>Search inputs</summary>
-      <div>
-        <input id="input" placeholder="Search NASA images" @input="${this.inputChanged}" />
+      <h2>${this.title}</h2>
+      <details open>
+        <summary>Search inputs</summary>
+        <div>
+          <input id="input" placeholder="Search NASA images" @input="${this.inputChanged}" />
+        </div>
+      </details>
+      <div class="results">
+        ${this.items.map((item) => html`
+          <nasa-image
+            source="${item.links[0].href}"
+            title="${item.data[0].title}"
+            alt="${item.data[0].description || 'NASA Image'}"
+            secondary_creator="${item.data[0].secondary_creator || 'Unknown'}"
+          ></nasa-image>
+        `)}
       </div>
-    </details>
-    <div class="results">
-      ${this.items.map((item, index) => html`
-      <nasa-image
-        source="${item.links[0].href}"
-        title="${item.data[0].title}"
-      ></nasa-image>
-      `)}
-    </div>
     `;
   }
+  
 
   inputChanged(e) {
     this.value = this.shadowRoot.querySelector('#input').value;
